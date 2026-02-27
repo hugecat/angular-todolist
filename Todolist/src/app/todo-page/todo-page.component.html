@@ -1,0 +1,63 @@
+<div>
+  <app-header class="header"></app-header>
+
+  <div class="todo-list-body">
+    <div class="input-box">
+      <mat-form-field>
+        <mat-label>New Todo</mat-label>
+        <input
+          matInput
+          #todoInput
+          (keypress="inputKeypress($event)"
+          )
+          placeholder="Enter a new todo"
+        />
+      </mat-form-field>
+      <button
+        *ngIf="!todoEditing"
+        class="add-btn"
+        mat-icon-button
+        color="primary"
+        (click)="add()"
+      >
+        Add
+      </button>
+      <button
+        *ngIf="todoEditing"
+        class="add-btn"
+        mat-icon-button
+        color="accent"
+        (click)="finishEdit()"
+      >
+        Edit
+      </button>
+    </div>
+    <mat-card>
+      <mat-list>
+        <mat-list-item *ngFor="let todo of todoList">
+          <div class="todo-item">
+            <mat-checkbox [checked]="todo.status" (change)="changeStatus(todo)">
+              <div [ngClass]="{ todoContext: true, done: todo.status }">
+                {{ todo.context }}
+              </div>
+            </mat-checkbox>
+            <span>
+              <mat-icon
+                class="controls edit"
+                matTooltip="Edit"
+                (click)="edit(todo)"
+                >edit</mat-icon
+              >
+              <mat-icon
+                class="controls delete"
+                matTooltip="Delete"
+                (click)="delete(todo)"
+                >delete</mat-icon
+              >
+            </span>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card>
+  </div>
+</div>
