@@ -1,27 +1,102 @@
-# Todolist
+# Angular Todo List
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.5.
+A simple Todo List application built with Angular 12 and Angular Material.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Add new todo items
+- Mark todos as completed
+- Edit existing todos
+- Delete todos
+- Press `Enter` to add or save edits
+- Data persistence with browser `localStorage`
+- Responsive layout for mobile and desktop
 
-## Code scaffolding
+## Tech Stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Angular `12.2.x`
+- Angular Material `12.2.x`
+- TypeScript `4.3.x`
+- UUID `8.3.2`
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (LTS recommended)
+- npm
+- Angular CLI (`npm install -g @angular/cli`)
+
+### Installation
+
+```bash
+npm install
+```
+
+### Run Development Server
+
+```bash
+npm start
+```
+
+Open: `http://localhost:4200/`
+
+## Available Scripts
+
+- `npm start`: Run dev server
+- `npm run build`: Build for production
+- `npm run watch`: Build in watch mode (development config)
+- `npm test`: Run unit tests with Karma
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+npm run build
+```
 
-## Running unit tests
+Build output is generated in `dist/Todolist`.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Project Structure
 
-## Running end-to-end tests
+```text
+src/
+  app/
+    header/                 # Top toolbar component
+    todo-page/              # Main todo page (list + actions)
+      Todo.ts               # Todo model
+    app-routing.module.ts   # Routes (root -> todo page)
+    app.module.ts           # Root Angular module + Material imports
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Data Persistence
 
-## Further help
+Todos are saved in browser `localStorage` under the key:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- `todoList`
+
+## Troubleshooting
+
+### TS1383 error from `uuid`
+
+If you see:
+
+```text
+Error: node_modules/uuid/dist/index.d.ts:1:1 - error TS1383
+```
+
+Use the Angular 12 compatible dependency set:
+
+```bash
+npm uninstall uuid @types/uuid
+npm install uuid@8.3.2
+```
+
+Then install matching types (or remove `@types/uuid` entirely if not needed):
+
+```bash
+npm install -D @types/uuid@8
+```
+
+## License
+
+For learning and personal use.
